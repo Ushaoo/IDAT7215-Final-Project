@@ -1,0 +1,78 @@
+{
+  "architecture": "mobilenet_v3_small",
+  "classes": [
+    "Non-defect",
+    "Defect"
+  ],
+  "base_weights": "IMAGENET1K_V1",
+  "base_weights_url": "https://download.pytorch.org/models/mobilenet_v3_small-047dcff4.pth",
+  "split_sha256": "f7efba67d4802aa9feaca11cad5e39cd8d348c955148910a1be738f55e991a12",
+  "image_size": 224,
+  "torch_version": "2.7.1",
+  "device": "mps",
+  "platform": "macOS-27.2.1-arm64-arm-64bit",
+  "epochs": 30,
+  "batch_size": 8,
+  "seed": 42,
+  "optimizer": "adam",
+  "learning_rate": 0.001,
+  "checkpoint_selection": "highest validation defect F1, then lowest validation loss, then earliest epoch",
+  "split_counts": {
+    "train": 190,
+    "val": 41,
+    "test": 40
+  },
+  "selected_epoch": 28,
+  "format": "m4-full-v1",
+  "validation": {
+    "accuracy": 1.0,
+    "f1_defect": 1.0,
+    "mcc": 1.0,
+    "confusion_matrix": [
+      [
+        20,
+        0
+      ],
+      [
+        0,
+        21
+      ]
+    ],
+    "count": 41,
+    "loss": 0.0011947137536481023
+  },
+  "test": {
+    "accuracy": 0.95,
+    "f1_defect": 0.9523809523809523,
+    "mcc": 0.9045340337332909,
+    "confusion_matrix": [
+      [
+        18,
+        2
+      ],
+      [
+        0,
+        20
+      ]
+    ],
+    "count": 40,
+    "loss": 0.07271507382392883
+  },
+  "total_parameters": 964066,
+  "trainable_parameters": 37058,
+  "full_checkpoint_bytes": 3978891,
+  "full_checkpoint_sha256": "607fb5606a0feb6c237f35740093b7daaaf7268dba10a7b9d39056ef888d533f",
+  "head_checkpoint_bytes": 151409,
+  "head_checkpoint_sha256": "f87c1b5ab7ee2447aace88873bf7038db5ba183b66477ad0c1d3b28537fba576",
+  "latency": {
+    "mean_ms": 7.6067077,
+    "median_ms": 7.431667,
+    "p95_ms": 8.278625,
+    "warmup": 10,
+    "repeats": 60,
+    "input_count": 12,
+    "batch_size": 1,
+    "precision": "float32",
+    "scope": "model forward, prepared inputs on device, synchronized, excludes loading and transforms"
+  }
+}
