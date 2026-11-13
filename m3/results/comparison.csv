@@ -1,0 +1,3 @@
+model,selected_epoch,test_n,accuracy,f1_defect,mcc,total_parameters,trainable_parameters,full_checkpoint_bytes,mean_ms,median_ms,p95_ms
+VGG16,30,40,1.0,1.0,1.0,14747650,32962,59000977,23.16619585,22.8562085,26.792416
+MobileNetV2,30,40,1.0,1.0,1.0,2305986,82114,9457483,8.020275066666667,7.9769165,8.8525
