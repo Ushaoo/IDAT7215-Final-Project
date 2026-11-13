@@ -1,6 +1,6 @@
 {
   "task": "binary classification: Defect (1) vs Non-defect (0)",
-  "data_root": "C:\\Users\\fyx\\Desktop\\HKU第一学期\\7215\\TEAMWORK\\AMdataset-main\\dataset",
+  "data_root": "data_root": "data/",
   "total_images": 271,
   "class_counts": {
     "Non-defect": 135,
