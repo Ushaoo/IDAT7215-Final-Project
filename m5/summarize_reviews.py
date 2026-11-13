@@ -112,12 +112,12 @@ def summarize(manifest_path, review_specs, output_path):
 
     item_path = output / "item_scores.csv"
     with item_path.open("w", newline="", encoding="utf-8-sig") as stream:
-        writer = csv.DictWriter(stream, fieldnames=item_rows[0].keys())
+        writer = csv.DictWriter(stream, fieldnames=item_rows[0].keys(), lineterminator="\n")
         writer.writeheader()
         writer.writerows(item_rows)
     model_path = output / "localization_success.csv"
     with model_path.open("w", newline="", encoding="utf-8-sig") as stream:
-        writer = csv.DictWriter(stream, fieldnames=model_rows[0].keys())
+        writer = csv.DictWriter(stream, fieldnames=model_rows[0].keys(), lineterminator="\n")
         writer.writeheader()
         writer.writerows(model_rows)
 

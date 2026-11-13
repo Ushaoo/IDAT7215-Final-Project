@@ -11,9 +11,9 @@ class TinyClassifier(nn.Module):
         super().__init__()
         self.backbone = nn.Sequential(
             nn.Conv2d(3, 4, 3, padding=1),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
             nn.Conv2d(4, 5, 3, padding=1),
-            nn.ReLU(),
+            nn.ReLU(inplace=True),
         )
         self.pool = nn.AdaptiveAvgPool2d(1)
         self.head = nn.Linear(5, 2)

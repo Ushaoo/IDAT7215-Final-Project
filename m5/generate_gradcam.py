@@ -4,6 +4,7 @@ import hashlib
 import json
 import random
 import re
+import secrets
 from pathlib import Path
 
 import matplotlib
@@ -60,9 +61,9 @@ def slug(value):
     return cleaned or "model"
 
 
-def blind_identifier(seed, model_name, relative_path):
-    payload = f"{seed}|{model_name}|{relative_path}".encode("utf-8")
-    return hashlib.sha256(payload).hexdigest()[:12].upper()
+def blind_identifier():
+    """Return an opaque identifier that cannot be recomputed from public inputs."""
+    return secrets.token_hex(6).upper()
 
 
 def render_panel(original, heatmap, destination, title=None):
@@ -155,6 +156,7 @@ def main(argv=None):
         defect_only=not args.include_non_defect,
     )
     manifest_rows = []
+    used_blind_ids = set()
     for model_name, (model, metadata, checkpoint) in loaded.items():
         override = layer_overrides.get(model_name)
         layer = resolve_target_layer(model, str(override)) if override else default_target_layer(
@@ -171,7 +173,10 @@ def main(argv=None):
                 maps, logits, _ = gradcam.generate(batch, cam_target)
                 probabilities = logits.softmax(dim=1)[0]
                 heatmap = maps[0, 0].cpu().numpy()
-                blind_id = blind_identifier(args.seed, model_name, relative)
+                blind_id = blind_identifier()
+                while blind_id in used_blind_ids:
+                    blind_id = blind_identifier()
+                used_blind_ids.add(blind_id)
                 blind_path = output / "blind" / "images" / f"{blind_id}.png"
                 private_path = output / "private" / "images" / f"{slug(model_name)}_{blind_id}.png"
                 render_panel(original, heatmap, blind_path)
@@ -206,7 +211,7 @@ def main(argv=None):
 
     manifest_path = output / "private" / "manifest.csv"
     with manifest_path.open("w", newline="", encoding="utf-8-sig") as stream:
-        writer = csv.DictWriter(stream, fieldnames=manifest_rows[0].keys())
+        writer = csv.DictWriter(stream, fieldnames=manifest_rows[0].keys(), lineterminator="\n")
         writer.writeheader()
         writer.writerows(manifest_rows)
 
@@ -222,6 +227,7 @@ def main(argv=None):
             writer = csv.DictWriter(
                 stream,
                 fieldnames=("blind_id", "image_path", "covers_defect", "comments"),
+                lineterminator="\n",
             )
             writer.writeheader()
             for row in review_rows:

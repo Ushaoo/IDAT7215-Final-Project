@@ -10,19 +10,20 @@ class GradCAM:
         self.activations = None
         self.gradients = None
         self._forward_handle = target_layer.register_forward_hook(self._capture_activations)
-        self._backward_handle = target_layer.register_full_backward_hook(self._capture_gradients)
 
     def _capture_activations(self, _module, _inputs, output):
         if not isinstance(output, torch.Tensor) or output.ndim != 4:
             raise ValueError("Grad-CAM target layer must output a BxCxHxW tensor")
-        self.activations = output
+        # Keep a pre-activation copy. A tensor hook avoids the view + in-place ReLU
+        # conflict triggered by module backward hooks in VGG16.
+        self.activations = output.clone()
+        output.register_hook(self._capture_gradients)
 
-    def _capture_gradients(self, _module, _grad_input, grad_output):
-        self.gradients = grad_output[0]
+    def _capture_gradients(self, gradient):
+        self.gradients = gradient
 
     def close(self):
         self._forward_handle.remove()
-        self._backward_handle.remove()
 
     def __enter__(self):
         return self

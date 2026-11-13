@@ -37,6 +37,16 @@ For an offline run, put the official files in one directory and pass
 - `resnet50-0676ba61.pth`
 - `mobilenet_v3_small-047dcff4.pth`
 
+Download only the 40 SHA-256-verified test images required by M5 (rather than the
+full 271-image training split):
+
+```bash
+python -m m5.fetch_data \
+  --split-csv data/split.csv \
+  --subset test \
+  --data-root /path/to/m5_data
+```
+
 ## Generate heatmaps and the blind-review bundle
 
 Run after the M3/M4 checkpoint folders are available in the working tree:
@@ -73,6 +83,8 @@ sensitivity check.
 For genuine blinding, M8 or another non-rater should run the final generation and
 retain `private/`. Each rater receives only `blind/images/` and their own CSV, fills
 `covers_defect` with `yes/no` (or `1/0`), and must not see another rater's answers.
+Blind IDs are generated with cryptographically secure randomness and cannot be
+recomputed from the public model names, image paths or sampling seed.
 Each rater's CSV uses a different deterministic random order so the model blocks
 cannot be inferred from row order.
 
