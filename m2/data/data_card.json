@@ -1,0 +1,49 @@
+{
+  "task": "binary classification: Defect (1) vs Non-defect (0)",
+  "data_root": "C:\\Users\\fyx\\Desktop\\HKU第一学期\\7215\\TEAMWORK\\AMdataset-main\\dataset",
+  "total_images": 271,
+  "class_counts": {
+    "Non-defect": 135,
+    "Defect": 136
+  },
+  "split_counts": {
+    "train": {
+      "Defect": 95,
+      "Non-defect": 95,
+      "total": 190
+    },
+    "val": {
+      "Defect": 21,
+      "Non-defect": 20,
+      "total": 41
+    },
+    "test": {
+      "Defect": 20,
+      "Non-defect": 20,
+      "total": 40
+    }
+  },
+  "split_seed": 2026,
+  "requested_ratios": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "duplicate_files": 0,
+  "duplicate_groups": 0,
+  "duplicate_policy": "identical SHA-256 files are kept in the same split",
+  "image_width_range": [
+    5184,
+    5184
+  ],
+  "image_height_range": [
+    3456,
+    3456
+  ],
+  "unreadable_images": [],
+  "notes": [
+    "The public repository contains only a portion of the paper dataset.",
+    "Compare models on this identical split; do not claim exact replication of paper numbers.",
+    "Augmented images must not cross split boundaries with their originals."
+  ]
+}
