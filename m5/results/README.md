@@ -12,13 +12,17 @@ each of VGG16, MobileNetV2, ResNet50 and MobileNetV3-Small.
 - M4 source commit: `fffb74c`
 - AMdataset source commit: `52fe75dec70c1e8046493b4e3256f8f752a4d39d`
 - Target mode: predicted class
-- True and predicted class for all 80 items: Defect
+- True and predicted class for all 80 blind-review items: Defect (20 selected
+  Defect images × 4 models)
 - Baseline errors among the selected items: 0
 - Private manifest SHA-256: `4cd57af2301cb89412ebc12513e3690d978eb7d3c0018c450ed501b727a74425`
 
-All four submitted models classified every fixed-split test image correctly, so no
-baseline misclassified examples were available. None were manufactured. This does
-not establish localization quality; that result must come from the blind review.
+All four submitted models correctly classified the 20 Defect images selected for
+blind review. This statement does not apply to the entire fixed test set:
+MobileNetV3-Small has two false positives on Non-defect test images, and those images
+fall outside this Defect-only blind-review sample. Therefore the blind bundle contains
+no misclassified items; none were manufactured. This does not establish localization
+quality, which must be determined by the blind review.
 
 ## Blind-review procedure
 
