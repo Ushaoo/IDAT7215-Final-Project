@@ -1,0 +1,5 @@
+﻿model,n_heatmaps,n_rated,n_yes,n_no,n_na,localization_rate,rate_on_correct,rate_on_wrong
+VGG16,20,60,7,53,0,0.117,0.117,
+MobileNetV2,20,60,57,3,0,0.950,0.950,
+ResNet50,20,60,53,7,0,0.883,0.883,
+MobileNetV3-Small,20,60,56,4,0,0.933,0.933,

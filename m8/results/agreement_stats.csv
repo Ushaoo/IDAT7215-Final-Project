@@ -1,0 +1,8 @@
+﻿metric,value,detail
+full_agreement_pct,85.000,68/80 images rated by all three
+pair_agreement_pct_M1-M5,88.750,n=80
+cohen_kappa_M1-M5,0.706,sklearn cohen_kappa_score
+pair_agreement_pct_M1-M8,93.750,n=80
+cohen_kappa_M1-M8,0.853,sklearn cohen_kappa_score
+pair_agreement_pct_M5-M8,87.500,n=80
+cohen_kappa_M5-M8,0.690,sklearn cohen_kappa_score

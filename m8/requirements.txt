@@ -1,0 +1,21 @@
+# IDAT7215 Topic 4 — consolidated environment (pin: Python 3.10+)
+# Merged from m2/, m3/, m4/ and m5/ per-branch requirements files.
+# PyTorch stack (all four models are trained and explained with torch).
+
+torch==2.7.1
+torchvision==0.22.1
+
+# Data handling / metrics
+numpy>=1.24
+pandas>=2.2
+Pillow>=10,<13
+scikit-learn>=1.3
+
+# Figures
+matplotlib==3.10.7
+
+# Tests (M2 smoke tests, M5 gradcam/review tests)
+pytest>=7.0
+
+# TLS certificates (M3/M5 need these on some Windows setups)
+certifi>=2025.1.31
