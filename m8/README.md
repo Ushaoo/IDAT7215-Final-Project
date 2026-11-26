@@ -154,7 +154,7 @@ Parts developed by our group:
 | All report figures | `m8/plot_data_card.py`, `m8/plot_efficiency.py`, `m8/plot_robustness.py`, `m8/plot_gradcam_panel.py` | M8 |
 | This README | `README.md` | M8 |
 
-Model weights (checkpoints) are LLM-generated outputs of our own training runs and are not redistributed from the paper.
+The group training runs produced the shared classification heads. Torchvision provides the frozen ImageNet backbones.
 
 ## 7. Results Summary
 
@@ -165,10 +165,10 @@ Clean test split (40 images, fixed `data/split.csv`):
 | VGG16 | 40/40 | 1.000 | 14.75 M | 39.94 | 59.0 MB | **11.7%** |
 | MobileNetV2 | 40/40 | 1.000 | 2.31 M | 21.14 | 9.46 MB | 95.0% |
 | ResNet50 | 40/40 | 1.000 | 23.64 M | 45.47 | 94.87 MB | 88.3% |
-| MobileNetV3-Small | 38/40 | 0.952 | 0.96 M | 13.37 | 3.98 MB | 93.3% |
+| MobileNetV3-Small | 38/40 | 0.950 | 0.96 M | 13.37 | 3.98 MB | 93.3% |
 
 - **Latency**: M2's unified CPU benchmark, batch size 1, FP32, warm-up + repeated timings (`m8/data/efficiency_cpu.csv`). Earlier Mac-MPS numbers are superseded.
-- **Localization rate**: share of 20 blind Grad-CAM panels per model that the majority of three independent reviewers judged to cover the defect region (`m8/results/`).
+- **Localization rate**: share of positive ratings among 60 individual ratings for each model (20 Grad-CAM panels and three reviewers) (`m8/results/`).
 - **Robustness** (Macro-F1 under σ = 0.2 Gaussian noise): VGG16 0.387, ResNet50 0.601, MobileNetV3-Small 0.747, MobileNetV2 0.774 — clean accuracy does not predict robustness (`m8/data/robustness_results_all_models.csv`).
 
 Take-away for the report: all four models are near-ceiling on the clean split, so the discriminative evidence is in efficiency, robustness and explanation quality — not accuracy.

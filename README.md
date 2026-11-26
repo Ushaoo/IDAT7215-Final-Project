@@ -1,6 +1,8 @@
 
 # **Defect Analysis of 3D Printed Objects Using Transfer Learning Approaches**
 
+The [November 26 grouped experiment](grouped/README.md) covers all 4,845 public image files, four backbones, matched ablations, reproducible figures and held-out predictions.
+
 Group 6 M4 results and checkpoint loading instructions are available in [M4 training and evaluation](m4/README.md). [Slide 8–9 materials](m4/results/slides_08_09.md)
 
 ## **Abstract**
