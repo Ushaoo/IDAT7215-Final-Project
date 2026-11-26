@@ -49,6 +49,21 @@ For seed 42 we replayed all 64 saved fold-specific heads on the original held-ou
 
 Each architecture has a Grad-CAM grid of the median numbered normal and defective frame from each held-out fold. All panels explain the defect score. New-panel human ratings are pending. The efficiency file reports seed-42 global/weighted model forward latency on one Mac CPU using four threads, FP32, one prepared image, ten warm-up and sixty timed runs. The earlier Windows benchmark covers different hardware.
 
+## Paired human review
+
+The new review kit uses 20 labelled defect cases, five from each held-out Kaggle fold. A seeded sampler draws one image from each of five consecutive filename bands in a fold. Selection uses the manifest and filename order. For each case there are eight anonymous panels, one for each architecture and pooling arm. The 160 panels compare the expanded-data control with whole-map pooling. Both arms use the same expanded training data, loss and seed-42 checkpoint selection. Grad-CAM targets the defect score even when the model predicts normal.
+
+Use one independently shuffled ZIP per reviewer. The coordinator holds the private ID key until all three forms have been returned. Reviewers evaluate the overlap of the strongest highlights and a visible defect with yes, no or unsure. Three completed forms feed the summary code. It reports vote counts and denominators, majority coverage by model and fold, unresolved cases, paired outcomes, and pairwise agreement including Cohen's kappa. A resolved majority requires at least two yes votes or at least two no votes. Human ratings are pending. The sample represents visual overlap on the 20 selected defect cases. Classification accuracy and recall use the full out-of-fold test predictions.
+
+Generate a fresh kit locally from the repository root with the prepared image cache and official backbones. The generator creates new random panel IDs on every run. Use forms and key from the same run.
+
+```sh
+python -m grouped.blind_review.generate grouped/results "$cache" "$data" /path/to/new-kit
+python -m grouped.blind_review.aggregate /path/to/new-kit/coordinator_only/blind_key.csv ratings_A.csv ratings_B.csv ratings_C.csv /path/to/new-summary
+```
+
+The team coordinator distributes only the three reviewer ZIPs. The kit and identity key live outside Git.
+
 ## Original responsibilities and new results for review
 
 The November 26 experiment was implemented and run in this branch with Codex assistance at M4's request. The following assignments identify the owners of the existing workflows and natural reviewers for the extension.
