@@ -64,6 +64,27 @@ python -m grouped.blind_review.aggregate /path/to/new-kit/coordinator_only/blind
 
 The team coordinator distributes only the three reviewer ZIPs. The kit and identity key live outside Git.
 
+## Codex localization review
+
+Codex performed this supplemental assessment as one AI reviewer. The 20 anonymous original images were presented in a shuffled contact sheet with case numbers. During region marking, the sheets displayed the original images and coordinates. Codex fixed illustrative rectangles around the visible defect regions before the overlap scoring run. Thirteen images had a markable defect, and seven were recorded as unsure across all eight paired conditions. The key, box coordinates and panel-level scores are kept with the local coordinator materials for the existing human review.
+
+For every panel, the script replays the matching fold's seed-42 model and explains the defect class. The hotspot consists of pixels at or above 0.80 in the per-image normalized Grad-CAM map. At the primary threshold a panel qualifies when at least 50% of hotspot pixels fall within the AI-marked region. The table reports qualifying panels among the 13 assessable cases. A flat heatmap contributes zero overlap. The [summary CSV](results/codex_localization_summary.csv) also reports 40% and 60% overlap thresholds and counts of pairs qualifying in both, either or neither condition.
+
+| Model | Local pooling | Global pooling | Global only | Local only |
+|---|---:|---:|---:|---:|
+| MobileNetV2 | 0/13 | 2/13 | 2 | 0 |
+| MobileNetV3-Small | 0/13 | 5/13 | 5 | 0 |
+| ResNet50 | 2/13 | 8/13 | 7 | 1 |
+| VGG16 | 0/13 | 3/13 | 3 | 0 |
+
+ResNet50 retains a global-pooling advantage at all three overlap thresholds. MobileNetV2 has zero qualifying cases in both configurations at the 60% threshold. All 160 replays matched the anonymous panel manifest's defect probabilities within 0.0001. This review measures agreement with approximate AI-drawn regions on a small subset of defective images. Human review and inter-rater agreement remain separate.
+
+With the matching coordinator-only key, AI region annotations and resized cache:
+
+```sh
+python -m grouped.blind_review.codex_localization grouped/results "$cache" "$data" /path/to/kit/coordinator_only/blind_key.csv case_key.csv annotations.csv /path/to/ai-results
+```
+
 ## Original responsibilities and new results for review
 
 The November 26 experiment was implemented and run in this branch with Codex assistance at M4's request. The following assignments identify the owners of the existing workflows and natural reviewers for the extension.

@@ -1,0 +1,13 @@
+﻿reviewer,model,overlap_threshold,hotspot_threshold,total_cases,assessable,unsure,control_yes,global_yes,both_yes,control_only,global_only,both_no
+Codex (single AI reviewer),mobilenet_v2,0.4,0.8,20,13,7,0,4,0,0,4,9
+Codex (single AI reviewer),mobilenet_v2,0.5,0.8,20,13,7,0,2,0,0,2,11
+Codex (single AI reviewer),mobilenet_v2,0.6,0.8,20,13,7,0,0,0,0,0,13
+Codex (single AI reviewer),mobilenet_v3_small,0.4,0.8,20,13,7,1,5,0,1,5,7
+Codex (single AI reviewer),mobilenet_v3_small,0.5,0.8,20,13,7,0,5,0,0,5,8
+Codex (single AI reviewer),mobilenet_v3_small,0.6,0.8,20,13,7,0,5,0,0,5,8
+Codex (single AI reviewer),resnet50,0.4,0.8,20,13,7,4,8,3,1,5,4
+Codex (single AI reviewer),resnet50,0.5,0.8,20,13,7,2,8,1,1,7,4
+Codex (single AI reviewer),resnet50,0.6,0.8,20,13,7,2,8,1,1,7,4
+Codex (single AI reviewer),vgg16,0.4,0.8,20,13,7,0,3,0,0,3,10
+Codex (single AI reviewer),vgg16,0.5,0.8,20,13,7,0,3,0,0,3,10
+Codex (single AI reviewer),vgg16,0.6,0.8,20,13,7,0,3,0,0,3,10
