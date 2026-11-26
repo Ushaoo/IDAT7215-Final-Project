@@ -1,0 +1,3 @@
+image_id,model,correct,heatmap_file
+IMG_8915.JPG,VGG16,1,vgg16/IMG_8915_heatmap.png
+IMG_9087.JPG,ResNet50,0,resnet50/IMG_9087_heatmap.png

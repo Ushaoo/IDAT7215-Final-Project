@@ -1,0 +1,17 @@
+# sample-image cache downloaded by plot_data_card.py (rebuilt on demand,
+# every file is SHA-256 verified against data/split.csv)
+figures/_sample_cache/
+_sample_cache/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# local environments
+.venv/
+venv/
+
+# OS noise
+.DS_Store
+Thumbs.db

@@ -1,6 +1,8 @@
 
 # **Defect Analysis of 3D Printed Objects Using Transfer Learning Approaches**
 
+Group 6 M4 results and checkpoint loading instructions are available in [M4 training and evaluation](m4/README.md). [Slide 8–9 materials](m4/results/slides_08_09.md)
+
 ## **Abstract**
 
 Additive manufacturing (AM) is rapidly gaining traction across diverse industries, including healthcare, aerospace, and automotive, due to its ability to enhance production efficiency. However, a critical challenge in AM is the early detection of defects, which can significantly reduce production costs and improve productivity. Addressing this need, our study explored the effectiveness of machine learning (ML) approaches, focusing on transfer learning (TL) models, for defect detection in 3D-printed objects. We utilized a range of TL models such as Visual Geometry Group (VGG)-16, Inception-Residual Network (InceptionResNet)-V2, Residual Network (ResNet)-50, Mobile Network (MobileNet)-V2, VGG19, ResNet101, Extreme Inception (Xception), Efficient Network (EfficientNet)-B0, EfficientNetB7, EfficientNetV2M (EfficientNetV2M), and Neural Architecture Search Network Large (NASNetLarge), analyzing images of 3D-printed objects across three datasets using various statistical measures.

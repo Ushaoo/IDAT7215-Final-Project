@@ -1,0 +1,25 @@
+{
+  "architecture": "vgg16",
+  "classes": [
+    "Non-defect",
+    "Defect"
+  ],
+  "base_weights": "IMAGENET1K_V1",
+  "base_weights_url": "https://download.pytorch.org/models/vgg16-397923af.pth",
+  "split_sha256": "f7efba67d4802aa9feaca11cad5e39cd8d348c955148910a1be738f55e991a12",
+  "image_size": 224,
+  "torch_version": "2.7.1",
+  "device": "mps",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "epochs": 30,
+  "batch_size": 8,
+  "seed": 42,
+  "optimizer": "adam",
+  "learning_rate": 0.001,
+  "checkpoint_selection": "highest validation defect F1, then lowest validation loss, then earliest epoch",
+  "split_counts": {
+    "train": 190,
+    "val": 41,
+    "test": 40
+  }
+}
