@@ -79,11 +79,18 @@ For every panel, the script replays the matching fold's seed-42 model and explai
 
 ResNet50 retains a global-pooling advantage at all three overlap thresholds. MobileNetV2 has zero qualifying cases in both configurations at the 60% threshold. All 160 replays matched the anonymous panel manifest's defect probabilities within 0.0001. This review measures agreement with approximate AI-drawn regions on a small subset of defective images. Human review and inter-rater agreement remain separate.
 
+[Report figure](results/codex_localization.png) · [Counts by held-out fold](results/codex_localization_by_fold.csv) · [Private input fingerprints](results/codex_localization_input_hashes.csv)
+
+![Grouped bar chart comparing local and global pooling on 13 cases judged assessable by Codex](results/codex_localization.png)
+
 With the matching coordinator-only key, AI region annotations and resized cache:
 
 ```sh
 python -m grouped.blind_review.codex_localization grouped/results "$cache" "$data" /path/to/kit/coordinator_only/blind_key.csv case_key.csv annotations.csv /path/to/ai-results
+python -m grouped.blind_review.finalize_codex /path/to/ai-results /path/to/kit/coordinator_only/blind_key.csv /path/to/public-summary
 ```
+
+Place the same `case_key.csv` and `annotations.csv` in the AI results directory before finalizing. The finalizer checks the panel identities and matched cases and exports aggregate files. Source image paths and anonymous panel IDs remain with the coordinator.
 
 ## Original responsibilities and new results for review
 
